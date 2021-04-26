@@ -4,16 +4,16 @@ from email.message import EmailMessage
 from datetime import datetime, timedelta
 
 
-Email_Address = 'friedmanlionel100@gmail.com'
-Email_Password = 'lionel@99'
+Email_Address = 'yourmail'
+Email_Password = 'password'
 username = ''
 email = ''
 todo_name = ''
 
 mydb = mysql.connector.connect(host='localhost',
                                        user='root',
-                                       passwd='5326Lionel@99',
-                                       database='TODO_LIST')
+                                       passwd='password',
+                                       database='database-name')
 mycursor = mydb.cursor()
 mycursor.execute("SELECT User.user_name,User.email,Todo_List.todo_list_name,Todo_List.reminder_date FROM User INNER JOIN Todo_List ON User.user_name = Todo_List. user_name")
 data = mycursor.fetchall()
@@ -31,7 +31,7 @@ for row in data:
         msg = EmailMessage()
         msg['Subject'] = 'Reminder!!'
         msg['From'] = Email_Address
-        msg['To'] = 'friedmanlionel100@gmail.com'
+        msg['To'] = 'sender mail'
         msg.set_content('Hello ' + username + ' in 2hours time you are supposed to finish your list ' + todo_name )
 
         with smtplib.SMTP_SSL('smtp.gmail.com',465) as smtp:
